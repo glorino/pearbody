@@ -3,8 +3,9 @@
 Landing page for **Pearlbody.NG** — a Nigerian fashion house (bespoke, bridal wears & silk,
 skincare & cosmetics, all-round wellness) opening its digital doors on **21 October 2026**.
 
-**Live:** https://pearlbody.vercel.app
-(custom domain `pearlbody.ng` attached — pending DNS pointing, see below)
+**Live:** https://pearlbodyng.vercel.app (also: `pearlbody.vercel.app`,
+`pearlbodyng-glopresc.vercel.app`) — custom domain `pearlbody.ng` attached,
+pending DNS pointing (see below).
 
 ## Stack
 
