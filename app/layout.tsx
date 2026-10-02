@@ -24,7 +24,7 @@ const greatVibes = Great_Vibes({
   display: "swap",
 });
 
-const SITE_URL = "https://pearlbody.ng.vercel.app";
+const SITE_URL = "https://pearlbodyng.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
