@@ -102,7 +102,7 @@ export default function Notify() {
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.15, ease: EASE }}
-          className="border border-onyx/10 bg-white/70 p-7 shadow-[0_40px_90px_-50px_rgba(11,11,11,0.55)] backdrop-blur-sm sm:p-9"
+          className="border border-onyx/10 bg-white/85 p-7 shadow-[0_40px_90px_-50px_rgba(11,11,11,0.55)] sm:bg-white/70 sm:backdrop-blur-sm sm:p-9"
         >
           <AnimatePresence mode="wait">
             {done ? (

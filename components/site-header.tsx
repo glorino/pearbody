@@ -18,7 +18,7 @@ export default function SiteHeader({ ready }: { ready: boolean }) {
       transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 ${
         scrolled
-          ? "border-b border-gold-500/20 bg-onyx/80 backdrop-blur-xl"
+          ? "border-b border-gold-500/20 bg-onyx backdrop-blur-none sm:bg-onyx/80 sm:backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
       }`}
     >

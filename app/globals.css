@@ -213,6 +213,20 @@
   border-right: 1px solid;
 }
 
+/* Mobile: keep the page smooth on phones/tablets — no shimmer repaints,
+   no animated silk drift, no blend-mode grain (WebKit scroll killers). */
+@media (max-width: 639px) {
+  .text-gold-gradient {
+    animation: none;
+  }
+  .silk {
+    animation: none;
+  }
+  .grain::after {
+    mix-blend-mode: normal;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -30,7 +30,7 @@ function RollingDigit({ value }: { value: number }) {
           animate={{ y: "0%" }}
           exit={{ y: "-100%" }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center text-gold-static"
         >
           {value}
         </motion.span>
@@ -100,7 +100,7 @@ export default function Countdown() {
       className="grain relative overflow-hidden border-t border-gold-500/15 bg-onyx-800 py-24 sm:py-32"
     >
       <div className="absolute inset-x-0 top-0 h-px hairline-gold opacity-60" />
-      <div className="absolute left-1/2 top-1/2 -z-0 h-[520px] w-[820px] max-w-[120vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-700/10 blur-[140px]" />
+      <div className="absolute left-1/2 top-1/2 -z-0 hidden h-[520px] w-[820px] max-w-[120vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold-700/10 blur-[140px] sm:block" />
 
       <motion.div
         style={{ y: frameY }}

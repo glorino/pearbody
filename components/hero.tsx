@@ -77,8 +77,8 @@ export default function Hero({ ready }: { ready: boolean }) {
       className="grain relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden"
     >
       <div className="silk absolute inset-0 -z-20" />
-      <div className="absolute -left-40 top-1/3 -z-10 h-[420px] w-[420px] rounded-full bg-gold-700/10 blur-[120px]" />
-      <div className="absolute -right-32 bottom-0 -z-10 h-[380px] w-[380px] rounded-full bg-gold-500/10 blur-[110px]" />
+      <div className="absolute -left-40 top-1/3 -z-10 hidden h-[420px] w-[420px] rounded-full bg-gold-700/10 blur-[120px] sm:block" />
+      <div className="absolute -right-32 bottom-0 -z-10 hidden h-[380px] w-[380px] rounded-full bg-gold-500/10 blur-[110px] sm:block" />
 
       <motion.div
         aria-hidden="true"
