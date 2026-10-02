@@ -56,3 +56,29 @@ export async function recordSignup(
     [email, name, source],
   );
 }
+
+export interface SignupRow {
+  id: number;
+  email: string;
+  name: string | null;
+  source: string | null;
+  created_at: string;
+}
+
+export async function listSignups(pool: Pool, limit = 1000): Promise<SignupRow[]> {
+  await ensureSchema(pool);
+  const res = await pool.query(
+    `SELECT id, email, name, source, created_at
+     FROM signups
+     ORDER BY created_at DESC
+     LIMIT $1`,
+    [limit],
+  );
+  return res.rows.map((row) => ({
+    id: Number(row.id),
+    email: row.email,
+    name: row.name,
+    source: row.source,
+    created_at: new Date(row.created_at).toISOString(),
+  }));
+}

@@ -1,7 +1,7 @@
-export const LAUNCH_ISO = "2026-10-21T00:00:00+01:00";
+export const LAUNCH_ISO = "2026-11-08T00:00:00+01:00";
 export const LAUNCH_DATE = new Date(LAUNCH_ISO);
-export const LAUNCH_DATE_LABEL = "21 October 2026";
-export const LAUNCH_DATE_SHORT = "21.10.2026";
+export const LAUNCH_DATE_LABEL = "8 November 2026";
+export const LAUNCH_DATE_SHORT = "08.11.2026";
 export const COUNTDOWN_START_ISO = "2026-08-21T00:00:00+01:00";
 
 export const TIKTOK_URL = "https://www.tiktok.com/@pearlbody.ng";

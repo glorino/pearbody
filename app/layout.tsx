@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Pearlbody.NG — Coming Soon | ...looks beyond words",
   description:
-    "Pearlbody.NG — bespoke fashion, bridal wears & silk, skincare and all-round wellness. The digital atelier opens 21 October 2026. Benin City, Nigeria.",
+    "Pearlbody.NG — bespoke fashion, bridal wears & silk, skincare and all-round wellness. The digital atelier opens 8 November 2026. Benin City, Nigeria.",
   keywords: [
     "Pearlbody",
     "Pearlbody.NG",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Pearlbody.NG",
     title: "Pearlbody.NG — Coming Soon | ...looks beyond words",
     description:
-      "The house of Pearlbody opens 21 October 2026. Quality. Professionalism. Reliability.",
+      "The house of Pearlbody opens 8 November 2026. Quality. Professionalism. Reliability.",
     images: [
       {
         url: "/brand/pearl-logo.jpeg",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Pearlbody.NG — Coming Soon",
-    description: "The house of Pearlbody opens 21 October 2026.",
+    description: "The house of Pearlbody opens 8 November 2026.",
     images: ["/brand/pearl-logo.jpeg"],
   },
   robots: { index: true, follow: true },
