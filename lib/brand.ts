@@ -10,11 +10,7 @@ export const TIKTOK_HANDLE = "@pearlbody.ng";
 export const PHONE_ONE = "+234 704 208 9277";
 export const PHONE_TWO = "+234 811 607 0957";
 
-export const ADDRESS_LINES = [
-  "23 Guobadia Street",
-  "Off Etete GRA, Benin City",
-  "Edo State, Nigeria",
-];
+export const ADDRESS_LINES = ["Benin City, Nigeria"];
 
 export const BRAND_VALUES = ["Quality", "Professionalism", "Reliability"];
 

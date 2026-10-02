@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
+import { getPool, recordSignup } from "@/lib/db";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export async function POST(request: Request) {
   const apiKey = process.env.MAILCHIMP_API_KEY;
   const audienceId = process.env.MAILCHIMP_AUDIENCE_ID;
+  const mailchimpConfigured = Boolean(apiKey && audienceId);
+  const pool = getPool();
 
-  if (!apiKey || !audienceId) {
+  if (!mailchimpConfigured && !pool) {
     return NextResponse.json(
       { ok: false, error: "Subscription service is not configured yet." },
       { status: 503 },
@@ -35,13 +38,37 @@ export async function POST(request: Request) {
     );
   }
 
-  const [key, datacenter] = apiKey.split("-");
+  let dbOk = false;
+  if (pool) {
+    try {
+      await recordSignup(pool, email, name, source);
+      dbOk = true;
+    } catch {
+      dbOk = false;
+    }
+  }
+
+  if (!mailchimpConfigured) {
+    if (dbOk) return NextResponse.json({ ok: true });
+    return NextResponse.json(
+      { ok: false, error: "We couldn't add you right now. Please try again." },
+      { status: 500 },
+    );
+  }
+
+  const [key, datacenter] = apiKey!.split("-");
   if (!key || !datacenter) {
+    if (dbOk) return NextResponse.json({ ok: true });
     return NextResponse.json(
       { ok: false, error: "Subscription service is misconfigured." },
       { status: 503 },
     );
   }
+
+  let already = false;
+  let mailchimpOk = false;
+  let mailchimpError: string | null = null;
+  let mailchimpStatus = 400;
 
   try {
     const res = await fetch(
@@ -67,6 +94,7 @@ export async function POST(request: Request) {
       | null;
 
     if (res.ok) {
+      mailchimpOk = true;
       // Mailchimp identifies members by MD5 of the lowercase email.
       const { createHash } = await import("node:crypto");
       const md5 = createHash("md5").update(email.toLowerCase()).digest("hex");
@@ -83,24 +111,27 @@ export async function POST(request: Request) {
           cache: "no-store",
         },
       ).catch(() => null);
-
-      return NextResponse.json({ ok: true });
+    } else if (data?.title === "Member Exists") {
+      mailchimpOk = true;
+      already = true;
+    } else {
+      mailchimpError =
+        data?.errors?.[0]?.message ||
+        data?.detail ||
+        "We couldn't add you right now. Please try again.";
+      mailchimpStatus = 400;
     }
-
-    if (data?.title === "Member Exists") {
-      return NextResponse.json({ ok: true, already: true });
-    }
-
-    const detail =
-      data?.errors?.[0]?.message ||
-      data?.detail ||
-      "We couldn't add you right now. Please try again.";
-
-    return NextResponse.json({ ok: false, error: detail }, { status: 400 });
   } catch {
-    return NextResponse.json(
-      { ok: false, error: "Network error — please try again." },
-      { status: 500 },
-    );
+    mailchimpError = "Network error — please try again.";
+    mailchimpStatus = 500;
   }
+
+  if (dbOk || mailchimpOk) {
+    return NextResponse.json(already && !dbOk ? { ok: true, already: true } : { ok: true });
+  }
+
+  return NextResponse.json(
+    { ok: false, error: mailchimpError ?? "We couldn't add you right now. Please try again." },
+    { status: mailchimpStatus },
+  );
 }
