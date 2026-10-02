@@ -3,7 +3,8 @@
 Landing page for **Pearlbody.NG** — a Nigerian fashion house (bespoke, bridal wears & silk,
 skincare & cosmetics, all-round wellness) opening its digital doors on **21 October 2026**.
 
-**Live:** https://pearlbody.ng.vercel.app
+**Live:** https://pearlbody.vercel.app
+(custom domain `pearlbody.ng` attached — pending DNS pointing, see below)
 
 ## Stack
 
@@ -44,6 +45,20 @@ Required (set in `.env.local` for local work, and in Vercel → Project → Sett
 
 - Fabric / style / measurement configurator
 - Full multi-page atelier site
+
+## Custom domain
+
+`pearlbody.ng` and `www.pearlbody.ng` are attached to the Vercel project.
+Until DNS is pointed at Vercel, use the working alias above.
+
+Recommended DNS (at your registrar):
+
+```text
+A     pearlbody.ng      76.76.21.21
+CNAME www.pearlbody.ng   cname.vercel-dns.com
+```
+
+Or switch nameservers to `ns1.vercel-dns.com` / `ns2.vercel-dns.com`.
 
 ---
 
